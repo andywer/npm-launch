@@ -1,0 +1,22 @@
+{
+  "name": "task-runner",
+  "version": "0.0.0",
+  "description": "Minimalistic task runner on steroids.",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard index.js"
+  },
+  "keywords": [
+    "task",
+    "runner",
+    "asny",
+    "await",
+    "script",
+    "pretty"
+  ],
+  "author": "Andy Wermke <andy@dev.next-step-software.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "standard": "^7.1.2"
+  }
+}
