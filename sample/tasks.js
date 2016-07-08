@@ -4,8 +4,14 @@
 
 const shell = require('../lib/index').shell
 
-export async function npmList () {
-  return await shell('npm list')
+export function npmList () {
+  // Run a shell command
+  return shell('npm list')
+}
+
+export function runStandardLinter () {
+  // Run a binary from node_modules/.bin
+  return shell('standard --version')
 }
 
 export function wasteSomeTime () {
@@ -19,8 +25,10 @@ export function wasteSomeTime () {
   })
 }
 
+// can even use async/await out-of-the-box
 export default async function () {
   await npmList()
+  await runStandardLinter()
   await wasteSomeTime()
 }
 
