@@ -1,5 +1,5 @@
 /**
- * Run per command line as `task-runner demo.js`
+ * Run per command line: `task-runner [<task>]`
  */
 
 const shell = require('../lib/index').shell
