@@ -1,0 +1,7 @@
+/**
+ * Run from command line: `task-runner -f tasks.json5 [<task>]`
+ */
+{
+  willWork: "echo 'Yes'",
+  willFail: "echo 'No' >&2 && exit 1"
+}
