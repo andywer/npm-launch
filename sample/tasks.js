@@ -24,6 +24,6 @@ export default async function () {
   await wasteSomeTime()
 }
 
-export function willfail () {
+export function willFail () {
   return shell('echo "Some error" >&2 && exit 1')
 }
