@@ -2,10 +2,10 @@
  * Run per command line as `task-runner demo.js`
  */
 
-const taskRunner = require('../lib/index')
+const shell = require('../lib/index').shell
 
 export async function npmList () {
-  return await taskRunner.shell('npm list')
+  return await shell('npm list')
 }
 
 export function wasteSomeTime () {
@@ -20,6 +20,10 @@ export function wasteSomeTime () {
 }
 
 export default async function () {
-  npmList()
+  await npmList()
   await wasteSomeTime()
+}
+
+export function willfail () {
+  return shell('echo "Some error" >&2 && exit 1')
 }
