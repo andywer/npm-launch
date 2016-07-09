@@ -10,7 +10,7 @@ Write scripts/makefiles by just exporting some JavaScript functions or JSON5.
 - Completely transparent API: Just write your methods or CLI command lines
 - JS: async/await are available out-of-the-box
 - JS: ES6 modules are available out-of-the-box
-- Looks really nice on console
+- Uses [Listr](https://github.com/SamVerschueren/listr) to provide beautiful console output
 - Runs on node.js 4+
 
 (No API. Just exporting functions: One function equals one task.)
