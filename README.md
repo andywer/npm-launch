@@ -11,6 +11,7 @@ Write scripts/makefiles by just exporting some JavaScript functions or JSON5.
 - JS: async/await are available out-of-the-box
 - JS: ES6 modules are available out-of-the-box
 - Looks really nice on console
+- Runs on node.js 4+
 
 (No API. Just exporting functions: One function equals one task.)
 

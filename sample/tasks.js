@@ -2,7 +2,7 @@
  * Run from command line: `task-runner [<task>]`
  */
 
-const shell = require('../lib/index').shell
+const shell = module.parent.exports.shell
 
 export function npmList () {
   // Run a shell command
