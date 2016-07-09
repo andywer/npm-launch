@@ -3,5 +3,6 @@
  */
 {
   willWork: "echo 'Yes'",
-  willFail: "echo 'No' >&2 && exit 1"
+  willFail: "echo 'No' >&2 && exit 1",
+  default: "run willWork && run willFail"
 }
