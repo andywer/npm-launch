@@ -23,6 +23,68 @@ npm i --save-dev npm-launch
 ```
 
 
+## Usage (JSON)
+
+```js
+// File: tasks.json5
+{
+  build: "webpack -c webpack-config.production.js",
+  test:  "run lint && run mocha",
+
+  //////////
+  // Hooks:
+
+  prepush: "run build && run test",
+
+  //////////////////
+  // Testing tasks:
+
+  lint:  "standard lib/**/*.js",
+  mocha: "mocha"
+}
+```
+
+```sh
+$ launch build test     # run tasks "build" and "test"
+# or
+$ launch -f path/to/tasks-file build test
+```
+
+
+## Usage (JS code)
+
+```js
+// File: tasks.js
+
+const shell = module.parent.exports.shell
+const delay = 1500
+
+// Define a task "npmPruneList"
+export async function npmPruneList () {
+  // Execute `npm prune`
+  await shell('npm prune')
+  // Then execute `npm list`
+  await shell('npm list')
+}
+
+// Define a task "wasteSomeTime"
+export function wasteSomeTime () {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(), delay)
+  })
+}
+
+// Define a task "default" that will just run "npmPruneList" & "wasteSomeTime" sequentially
+export default [ npmPruneList, wasteSomeTime ]
+```
+
+
+## Tips
+
+- If you do not provide a filename for a tasks file it will look for a file named `tasks.js`/`tasks.json`/`tasks.json5`
+- Auto-camelcasing: Instead of `$ launch myTask` you can also run `$ launch my-task`
+
+
 ## Known limitations
 
 #### No checkmark list for tasks being called by code

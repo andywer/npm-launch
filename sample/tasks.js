@@ -1,5 +1,5 @@
 /**
- * Run from command line: `task-runner [<task>]`
+ * Run from command line: `launch [<task>]`
  */
 
 const shell = module.parent.exports.shell
@@ -16,24 +16,21 @@ export function runStandardLinter () {
 
 export function wasteSomeTime () {
   return new Promise((resolve) => {
-    //console.log('It is now: ', new Date())
-
-    setTimeout(() => {
-      //console.log('After waiting for 1.5s it is now: ', new Date())
-      resolve()
-    }, 1500)
+    setTimeout(() => resolve(), 1500)
   })
 }
 
-// can even use async/await out-of-the-box
+// Can even use async/await out-of-the-box
 export async function fancyTasking () {
   await npmList()
   await runStandardLinter()
   await wasteSomeTime()
 }
 
+// Try `launch willFail` to see what an error looks like
 export function willFail () {
   return shell('echo "Some error" >&2 && exit 1')
 }
 
+// This will set up a task "default" triggering the given tasks one after another
 export default [ npmList, runStandardLinter, wasteSomeTime ]

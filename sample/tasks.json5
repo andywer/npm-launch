@@ -2,7 +2,7 @@
  * Run from command line: `task-runner -f tasks.json5 [<task>]`
  */
 {
-  willWork: "echo 'Yes'",
+  willWork: "npm --version",
   willFail: "echo 'No' >&2 && exit 1",
   default: "run willWork && run willFail",
   defaultAsArray: [ "willWork", "willFail" ]
