@@ -1,11 +1,11 @@
-# Task runner
+# npm-launch
 
-Write scripts/makefiles by just exporting some JavaScript functions or JSON5.
+Write scripts using JSON5 or just exporting some JavaScript functions.
 
 (Usage: tasks.js)
 (Usage: GIF: Run on CLI)
 
-- Small, fast, supports JS code, JSON & JSON5
+- Small, fast, supports JS code, JSON & JSON5 (JSON with nicer syntax and comments)
 - Runs commands from local `node_modules/.bin` like npm scripts do
 - Completely transparent API: Just write your methods or CLI command lines
 - JS: async/await are available out-of-the-box
@@ -17,6 +17,10 @@ Write scripts/makefiles by just exporting some JavaScript functions or JSON5.
 
 
 ## Installation
+
+```sh
+npm i --save-dev npm-launch
+```
 
 
 ## Known limitations

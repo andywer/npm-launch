@@ -1,23 +1,25 @@
 {
-  "name": "task-runner",
+  "name": "npm-launch",
   "version": "0.0.0",
   "description": "Minimalistic task runner on steroids.",
-  "bin": "lib/cli.js",
+  "bin": {
+    "launch": "lib/cli.js"
+  },
   "main": "lib/index.js",
   "scripts": {
     "test": "standard lib/*.js"
   },
   "keywords": [
+    "launch",
+    "run",
     "task",
-    "runner",
+    "json5",
     "async",
     "await",
     "es6",
     "es2015",
     "transparent",
-    "json5",
-    "script",
-    "pretty"
+    "script"
   ],
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "license": "MIT",
