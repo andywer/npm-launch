@@ -4,5 +4,6 @@
 {
   willWork: "echo 'Yes'",
   willFail: "echo 'No' >&2 && exit 1",
-  default: "run willWork && run willFail"
+  default: "run willWork && run willFail",
+  defaultAsArray: [ "willWork", "willFail" ]
 }

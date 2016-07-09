@@ -26,7 +26,7 @@ export function wasteSomeTime () {
 }
 
 // can even use async/await out-of-the-box
-export default async function () {
+export async function fancyTasking () {
   await npmList()
   await runStandardLinter()
   await wasteSomeTime()
@@ -35,3 +35,5 @@ export default async function () {
 export function willFail () {
   return shell('echo "Some error" >&2 && exit 1')
 }
+
+export default [ npmList, runStandardLinter, wasteSomeTime ]
