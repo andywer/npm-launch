@@ -15,6 +15,7 @@ export function runStandardLinter () {
 }
 
 export function wasteSomeTime () {
+  // You can return any Promise
   return new Promise((resolve) => {
     setTimeout(() => resolve(), 1500)
   })

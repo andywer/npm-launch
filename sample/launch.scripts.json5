@@ -1,9 +1,16 @@
 /**
- * Run from command line: `task-runner -f tasks.json5 [<task>]`
+ * Run from command line: `launch -f launch.scripts.json5 [<task>]`
  */
 {
+  // Will just run "npm --version"
   willWork: "npm --version",
+
+  // Will cause the task to fail
   willFail: "echo 'No' >&2 && exit 1",
+
+  // Will run "willWork", then "willFail"
   default: "run willWork && run willFail",
+
+  // You can also use array syntax!
   defaultAsArray: [ "willWork", "willFail" ]
 }
