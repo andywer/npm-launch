@@ -3,7 +3,7 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/npm-launch.svg)](https://www.npmjs.com/package/npm-launch)
 
-Write scripts using JSON5 or just exporting some JavaScript functions.
+Write scripts using JSON5 or ES6 JavaScript modules.
 
 ![Screencast](/doc/npm-launch.gif?raw=true)
 
