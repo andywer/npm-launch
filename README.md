@@ -9,15 +9,18 @@ Minimalistic task runner on steroids. Write scripts using JSON5 or ES6 JavaScrip
   <img alt="Screencast" src="./doc/npm-launch.gif?raw=true" />
 </p>
 
-- Small, fast, supports JS code, JSON & JSON5 (JSON with nicer syntax and comments)
+- Small, fast, supports JSON5 and JS code
 - Runs commands from local `node_modules/.bin` like npm scripts do
-- Completely transparent API: Just write your methods or CLI command lines
-- JS: async/await are available out-of-the-box
-- JS: ES6 modules are available out-of-the-box
 - Uses [Listr](https://github.com/SamVerschueren/listr) to provide beautiful console output
 - Runs on node.js 4+
 
-(No API. Just exporting functions: One function equals one task.)
+JSON5:
+- Nicer syntax and comments possible
+
+JavaScript:
+- Completely transparent API: Just write your methods or CLI command lines
+- ES6 module syntax is available out-of-the-box
+- `async`/`await` are available out-of-the-box
 
 
 ## Installation
