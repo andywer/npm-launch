@@ -3,9 +3,11 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/npm-launch.svg)](https://www.npmjs.com/package/npm-launch)
 
-Write scripts using JSON5 or ES6 JavaScript modules.
+Minimalistic task runner on steroids. Write scripts using JSON5 or ES6 JavaScript modules.
 
-![Screencast](/doc/npm-launch.gif?raw=true)
+<p align="center">
+  <img alt="Screencast" src="./doc/npm-launch.gif?raw=true" />
+</p>
 
 - Small, fast, supports JS code, JSON & JSON5 (JSON with nicer syntax and comments)
 - Runs commands from local `node_modules/.bin` like npm scripts do
@@ -87,7 +89,7 @@ export default [ npmPruneList, wasteSomeTime ]
 - Auto-camelcasing: Instead of `$ launch myTask` you can also run `$ launch my-task`
 
 
-## Known limitations
+## Minor known limitations
 
 #### No checkmark list for tasks being called by code
 
