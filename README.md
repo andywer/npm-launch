@@ -2,7 +2,7 @@
 
 Write scripts using JSON5 or just exporting some JavaScript functions.
 
-(Usage: tasks.js)
+(Usage: launch.scripts.js)
 (Usage: GIF: Run on CLI)
 
 - Small, fast, supports JS code, JSON & JSON5 (JSON with nicer syntax and comments)
@@ -26,7 +26,7 @@ npm i --save-dev npm-launch
 ## Usage (JSON)
 
 ```js
-// File: tasks.json5
+// File: launch.scripts.json5
 {
   build: "webpack -c webpack-config.production.js",
   test:  "run lint && run mocha",
@@ -47,14 +47,14 @@ npm i --save-dev npm-launch
 ```sh
 $ launch build test     # run tasks "build" and "test"
 # or
-$ launch -f path/to/tasks-file build test
+$ launch -f path/to/launch-file build test
 ```
 
 
 ## Usage (JS code)
 
 ```js
-// File: tasks.js
+// File: launch.scripts.js
 
 const shell = module.parent.exports.shell
 const delay = 1500
@@ -81,7 +81,7 @@ export default [ npmPruneList, wasteSomeTime ]
 
 ## Tips
 
-- If you do not provide a filename for a tasks file it will look for a file named `tasks.js`/`tasks.json`/`tasks.json5`
+- If you do not provide a filename for a launch file it will look for a file named `launch.scripts.js`/`launch.scripts.json`/`launch.scripts.json5`
 - Auto-camelcasing: Instead of `$ launch myTask` you can also run `$ launch my-task`
 
 
@@ -96,7 +96,7 @@ which sub-tasks the function is going to call.
 
 #### console.log() in tasks may disturb the output
 
-If you call `console.log()` (or similar) in your tasks file then the checkmark
+If you call `console.log()` (or similar) in your launch file then the checkmark
 list will probably be corrupted.
 
 
