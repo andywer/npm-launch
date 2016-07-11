@@ -107,6 +107,11 @@ If you call `console.log()` (or similar) in your launch file then the checkmark
 list will probably be corrupted.
 
 
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for details.
+
+
 ## License
 
 This library is released under the terms of the MIT license. See [LICENSE](./LICENSE) for details.
