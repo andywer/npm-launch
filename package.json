@@ -39,5 +39,7 @@
     "npm-run": "^3.0.0",
     "yargs": "^4.7.1",
     "zen-observable": "^0.3.0"
-  }
+  },
+  "repository": "andywer/npm-launch",
+  "bugs": "https://github.com/andywer/npm-launch/issues"
 }
