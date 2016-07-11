@@ -10,6 +10,7 @@ Minimalistic task runner on steroids. Write scripts using JSON5 or ES6 JavaScrip
 </p>
 
 - Small, fast, supports JSON5 and JS code
+- Clean and tidy: Show command's output only in case of error
 - Runs locally installed commands from `node_modules/.bin` like package.json scripts
 - Uses [Listr](https://github.com/SamVerschueren/listr) to provide beautiful console output
 - Runs on node.js 4+
