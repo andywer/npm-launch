@@ -1,5 +1,9 @@
 # npm-launch - Changelog
 
+## v0.1.1
+
+- Show the currently run shell command for JSON tasks
+
 ## v0.1.0
 
 - Initial release. Yeah!
