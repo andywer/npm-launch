@@ -10,7 +10,7 @@ Minimalistic task runner on steroids. Write scripts using JSON5 or ES6 JavaScrip
 </p>
 
 - Small, fast, supports JSON5 and JS code
-- Runs commands from local `node_modules/.bin` like npm scripts do
+- Runs locally installed commands from `node_modules/.bin` like package.json scripts
 - Uses [Listr](https://github.com/SamVerschueren/listr) to provide beautiful console output
 - Runs on node.js 4+
 
@@ -58,7 +58,7 @@ $ launch -f path/to/launch-file build test
 ```
 
 
-## Usage (JS code)
+## Usage (ES6 module)
 
 ```js
 // File: launch.scripts.js
