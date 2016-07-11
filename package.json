@@ -12,14 +12,14 @@
   },
   "keywords": [
     "launch",
+    "npm",
     "run",
     "task",
+    "package.json",
     "json5",
     "async",
     "await",
     "es6",
-    "es2015",
-    "transparent",
     "script"
   ],
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
