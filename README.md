@@ -11,17 +11,10 @@ Minimalistic task runner on steroids. Write scripts using JSON5 or ES6 JavaScrip
 
 - Small, fast, supports JSON5 and JS code
 - Clean and tidy: Show command's output only in case of error
-- Runs locally installed commands from `node_modules/.bin` like package.json scripts
+- Fully compatible with package.json `scripts`: You can just copy & paste them to the launch file
+- Runs locally installed commands from `node_modules/.bin` like package.json `scripts`
 - Uses [Listr](https://github.com/SamVerschueren/listr) to provide beautiful console output
 - Runs on node.js 4+
-
-JSON5:
-- Nicer syntax and comments possible
-
-JavaScript:
-- Completely transparent API: Just write your methods or CLI command lines
-- ES6 module syntax is available out-of-the-box
-- `async`/`await` are available out-of-the-box
 
 
 ## Installation
@@ -29,6 +22,23 @@ JavaScript:
 ```sh
 npm i --save-dev npm-launch
 ```
+
+## Why?
+
+- Because `scripts` in package.json are a mess
+- `gulp` & `grunt` need 100 lines of code for things that take one or two lines on the command line
+- Your terminal has constantly been flooded everytime you ran a task that produced a lot of stdout
+
+But no more! Let's take the sample launch file from the screencast before and use
+it in our `package.json`:
+
+<p align="center">
+  <img alt="Screencast" src="./doc/npm-launch-package.json.gif?raw=true" />
+</p>
+
+Here we go, everything is clean and concise now!
+
+**A clean and short package.json. Commented tasks. Not buried under tons of debug output anymore.**
 
 
 ## Usage (JSON)
@@ -58,6 +68,12 @@ $ launch build test     # run tasks "build" and "test"
 $ launch -f path/to/launch-file build test
 ```
 
+Features:
+- Comments in JSON
+- Nicer syntax, easy to read and write
+- Very short and concise
+- Fully compatible with standard JSON
+
 
 ## Usage (ES6 module)
 
@@ -85,6 +101,12 @@ export function wasteSomeTime () {
 // Define a task "default" that will just run "npmPruneList" & "wasteSomeTime" sequentially
 export default [ npmPruneList, wasteSomeTime ]
 ```
+
+Features:
+- Completely transparent API: No need to import anything, just export
+- ES6 module syntax is available out-of-the-box
+- `async`/`await` are available out-of-the-box
+- The additional power you need to solve complex tasks
 
 
 ## Tips
