@@ -29,6 +29,7 @@
     "ava": "^0.15.2",
     "husky": "^0.11.4",
     "rewire": "^2.5.2",
+    "sinon": "^1.17.4",
     "standard": "^7.1.2"
   },
   "dependencies": {

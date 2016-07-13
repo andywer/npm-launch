@@ -1,9 +1,12 @@
-const test = require('ava').test
-const path = require('path')
-const rewire = require('rewire')
-const EventEmitter = require('events')
+const test          = require('ava').test
+const path          = require('path')
+const rewire        = require('rewire')
+const sinon         = require('sinon')
+const EventEmitter  = require('events')
+const Listr         = require('listr')
 
-const taskClasses = require('../../lib/task/classes')
+const jsLoader      = require('../../lib/loaders/js')
+const taskClasses   = require('../../lib/task/classes')
 
 const FIXTURE_FILE_PATH = path.join(__dirname, '../fixtures/launch.scripts.js')
 
@@ -12,8 +15,6 @@ function take (thing, callback) {
 }
 
 test('loading JS file', (t) => {
-  const jsLoader = require('../../lib/loaders/js')
-
   const taskCallEmitter = new EventEmitter()
   const tasks = jsLoader.loadFile(FIXTURE_FILE_PATH, taskCallEmitter)
 
@@ -60,8 +61,6 @@ test('loading JS file', (t) => {
 })
 
 test('observeExports() works, calls cause taskCallEmitter events', (t) => {
-  const jsLoader = require('../../lib/loaders/js')
-
   const fakeTasks = {
     __Rewire__,
     fakeTask (...args) {
@@ -88,4 +87,42 @@ test('observeExports() works, calls cause taskCallEmitter events', (t) => {
   t.is(fakeTasks.shouldNotBeTouched, 'some string')
 })
 
-// TODO: Test if Listr items are created as expected (test each task; rewire `shell()`)
+test('task instances are created correctly', (t) => {
+  const method = sinon.spy(() => 'method called')
+
+  const fakeTasks = {
+    method,
+    arrayOfMethods: [ method ],
+    arrayOfStrings: [ 'method' ]
+  }
+
+  const createdTasks = jsLoader.createTasksForExports(fakeTasks)
+
+  ////////////////////
+  // fakeTask.method:
+  t.true(createdTasks.method instanceof taskClasses.TaskLeaf)
+  t.is(createdTasks.method.name, 'method')
+  t.is(createdTasks.method.title, 'method')
+  t.false(method.called)
+  t.is(createdTasks.method.method(), 'method called')
+  t.true(method.called)
+
+  ////////////////////////////
+  // fakeTask.arrayOfMethods:
+  t.true(createdTasks.arrayOfMethods instanceof taskClasses.TaskFork)
+  t.is(createdTasks.arrayOfMethods.name, 'arrayOfMethods')
+  t.is(createdTasks.arrayOfMethods.title, 'arrayOfMethods')
+  t.is(createdTasks.arrayOfMethods.children.length, 1)
+  t.true(createdTasks.arrayOfMethods.children[0] instanceof taskClasses.AnonymousCommandTask)
+  t.is(createdTasks.arrayOfMethods.children[0].title, 'proxy')  // the sinon spy's name is "proxy"
+
+  ////////////////////////////
+  // fakeTask.arrayOfStrings:
+  t.true(createdTasks.arrayOfStrings instanceof taskClasses.TaskFork)
+  t.is(createdTasks.arrayOfStrings.name, 'arrayOfStrings')
+  t.is(createdTasks.arrayOfStrings.title, 'arrayOfStrings')
+  t.is(createdTasks.arrayOfStrings.children.length, 1)
+  t.true(createdTasks.arrayOfStrings.children[0] instanceof taskClasses.TaskReference)
+  t.is(createdTasks.arrayOfStrings.children[0].reference, 'method')
+  t.is(createdTasks.arrayOfStrings.children[0].referencingTaskName, 'arrayOfStrings')
+})
