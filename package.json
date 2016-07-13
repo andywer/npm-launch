@@ -9,7 +9,7 @@
   "scripts": {
     "prepublish": "npm run test",
     "prepush": "npm run test",
-    "test": "standard lib/*.js"
+    "test": "standard lib/*.js && nyc ava"
   },
   "keywords": [
     "launch",
@@ -26,7 +26,11 @@
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "license": "MIT",
   "devDependencies": {
+    "ava": "^0.15.2",
     "husky": "^0.11.4",
+    "nyc": "^7.0.0",
+    "rewire": "^2.5.2",
+    "sinon": "^1.17.4",
     "standard": "^7.1.2"
   },
   "dependencies": {

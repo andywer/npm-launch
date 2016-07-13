@@ -30,7 +30,7 @@ export async function fancyTasking () {
 
 // Try `launch willFail` to see what an error looks like
 export function willFail () {
-  return shell('echo "Some error" >&2 && exit 1')
+  return shell('git push not-existent')
 }
 
 // This will set up a task "default" triggering the given tasks one after another

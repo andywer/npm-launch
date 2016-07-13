@@ -6,7 +6,7 @@
   willWork: "npm --version",
 
   // Will cause the task to fail
-  willFail: "echo 'No' >&2 && exit 1",
+  willFail: "git push not-existent",
 
   // Will run "willWork", then "willFail"
   default: "run willWork && run willFail",
