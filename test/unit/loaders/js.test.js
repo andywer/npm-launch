@@ -4,10 +4,10 @@ const rewire        = require('rewire')
 const sinon         = require('sinon')
 const EventEmitter  = require('events')
 
-const jsLoader      = rewire('../../lib/loaders/js')
-const taskClasses   = require('../../lib/task/classes')
+const jsLoader      = rewire('../../../lib/loaders/js')
+const taskClasses   = require('../../../lib/task/classes')
 
-const FIXTURE_FILE_PATH = path.join(__dirname, '../fixtures/launch.scripts.js')
+const FIXTURE_FILE_PATH = path.join(__dirname, '../../fixtures/launch.scripts.js')
 
 function take (thing, callback) {
   callback(thing)

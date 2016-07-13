@@ -3,10 +3,10 @@ const path        = require('path')
 const rewire      = require('rewire')
 const sinon       = require('sinon')
 
-const jsonLoader  = rewire('../../lib/loaders/json')
-const taskClasses = require('../../lib/task/classes')
+const jsonLoader  = rewire('../../../lib/loaders/json')
+const taskClasses = require('../../../lib/task/classes')
 
-const FIXTURE_FILE_PATH = path.join(__dirname, '../fixtures/launch.scripts.json5')
+const FIXTURE_FILE_PATH = path.join(__dirname, '../../fixtures/launch.scripts.json5')
 
 const shell = sinon.spy(() => Promise.resolve())
 jsonLoader.__set__('shell', shell)
@@ -87,15 +87,11 @@ test('task "willFail"', (t) => {
     t.true(task instanceof taskClasses.TaskFork)
     t.is(task.name, 'willFail')
     t.is(task.title, 'willFail')
-    t.is(task.children.length, 2)
+    t.is(task.children.length, 1)
 
     take(task.children[0], (subTask) => {
       t.true(subTask instanceof taskClasses.AnonymousCommandTask)
-      t.is(subTask.title, 'echo')
-    })
-    take(task.children[1], (subTask) => {
-      t.true(subTask instanceof taskClasses.AnonymousCommandTask)
-      t.is(subTask.title, 'exit')
+      t.is(subTask.title, 'git')
     })
   })
 })
@@ -114,8 +110,7 @@ test('running shell commands', (t) => {
   // Task "willFail"
 
   runTask(tasks.willFail)
-  t.is(shell.callCount, 2)
-  t.true(shell.calledWith('echo \'No\' >&2'))
-  t.true(shell.calledWith('exit 1'))
+  t.is(shell.callCount, 1)
+  t.true(shell.calledWith('git push not-existent'))
   shell.reset()
 })
