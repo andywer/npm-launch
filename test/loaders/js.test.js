@@ -11,7 +11,7 @@ function take (thing, callback) {
   callback(thing)
 }
 
-test('loading JS file', t => {
+test('loading JS file', (t) => {
   const jsLoader = require('../../lib/loaders/js')
 
   const taskCallEmitter = new EventEmitter()
@@ -59,5 +59,33 @@ test('loading JS file', t => {
   t.is(tasks.willFail.name, 'willFail')
 })
 
-// TODO: Test if taskCallEmitter works (test each function [not task]; rewire `shell()`)
+test('observeExports() works, calls cause taskCallEmitter events', (t) => {
+  const jsLoader = require('../../lib/loaders/js')
+
+  const fakeTasks = {
+    __Rewire__,
+    fakeTask (...args) {
+      return 'args: ' + args.join(', ')
+    },
+    shouldNotBeTouched: 'some string'
+  }
+
+  function __Rewire__ (taskName, newMethod) {
+    fakeTasks[ taskName ] = newMethod
+  }
+
+  const taskCallEmitter = new EventEmitter()
+  const calls = []
+  taskCallEmitter.on('call', (methodName) => calls.push(methodName))
+
+  jsLoader.observeExports(fakeTasks, taskCallEmitter)
+  t.is(calls.length, 0)
+
+  const returnValue = fakeTasks.fakeTask('foo', 'bar')
+  t.deepEqual(calls, [ 'fakeTask' ])
+  t.is(returnValue, 'args: foo, bar')
+
+  t.is(fakeTasks.shouldNotBeTouched, 'some string')
+})
+
 // TODO: Test if Listr items are created as expected (test each task; rewire `shell()`)
