@@ -3,7 +3,6 @@ const path          = require('path')
 const rewire        = require('rewire')
 const sinon         = require('sinon')
 const EventEmitter  = require('events')
-const Listr         = require('listr')
 
 const jsLoader      = require('../../lib/loaders/js')
 const taskClasses   = require('../../lib/task/classes')
