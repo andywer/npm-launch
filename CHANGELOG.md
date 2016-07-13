@@ -1,5 +1,9 @@
 # npm-launch - Changelog
 
+## Upcoming version
+
+- Bug fix: Exit with status code 1 if there is an error
+
 ## v0.1.1
 
 - Show the currently run shell command for JSON tasks
