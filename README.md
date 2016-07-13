@@ -1,5 +1,6 @@
 # npm-launch
 
+[![Build Status](https://travis-ci.org/andywer/npm-launch.svg?branch=master)](https://travis-ci.org/andywer/npm-launch)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/npm-launch.svg)](https://www.npmjs.com/package/npm-launch)
 
