@@ -1,8 +1,8 @@
 # npm-launch - Changelog
 
-## Upcoming version
+## v0.1.2
 
-- Added unit and functional tests
+- Add unit and functional tests
 - Bug fix: Exit with status code 1 if there is an error
 
 ## v0.1.1
