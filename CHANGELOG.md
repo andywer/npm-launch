@@ -2,6 +2,7 @@
 
 ## Upcoming version
 
+- Added unit and functional tests
 - Bug fix: Exit with status code 1 if there is an error
 
 ## v0.1.1
