@@ -23,3 +23,11 @@ test('running npm-launch default', () => {
 test('running npm-launch willFail', (t) => {
   return t.throws(execa.shell(`${NPM_LAUNCH} willFail`))
 })
+
+test('running npm-launch -f launch.scripts.json5 willWork', () => {
+  return execa.shell(`${NPM_LAUNCH} -f launch.scripts.json5 willWork`)
+})
+
+test('running npm-launch -f launch.scripts.json5 willFail', (t) => {
+  return t.throws(execa.shell(`${NPM_LAUNCH} -f launch.scripts.json5 willFail`))
+})
