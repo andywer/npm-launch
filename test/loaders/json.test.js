@@ -1,26 +1,34 @@
 const test        = require('ava').test
 const path        = require('path')
+const rewire      = require('rewire')
+const sinon       = require('sinon')
 
-const jsonLoader  = require('../../lib/loaders/json')
+const jsonLoader  = rewire('../../lib/loaders/json')
 const taskClasses = require('../../lib/task/classes')
 
 const FIXTURE_FILE_PATH = path.join(__dirname, '../fixtures/launch.scripts.json5')
+
+const shell = sinon.spy(() => Promise.resolve())
+jsonLoader.__set__('shell', shell)
+
+const tasks = jsonLoader.loadFile(FIXTURE_FILE_PATH)
 
 function take (thing, callback) {
   callback(thing)
 }
 
-test('loading JSON file', (t) => {
-  const tasks = jsonLoader.loadFile(FIXTURE_FILE_PATH)
+function runTask (task) {
+  task.children.forEach((task) => task.method())
+}
 
+test('all tasks have been loaded', (t) => {
   t.deepEqual(
     Object.keys(tasks).sort(),
     [ 'default', 'defaultAsArray', 'willFail', 'willWork' ]
   )
+})
 
-  ///////////////////
-  // Task "default":
-
+test('task "default"', (t) => {
   take(tasks.default, (task) => {
     t.true(task instanceof taskClasses.TaskFork)
     t.is(task.name, 'default')
@@ -38,10 +46,9 @@ test('loading JSON file', (t) => {
       t.is(subTask.referencingTaskName, 'default')
     })
   })
+})
 
-  //////////////////////////
-  // Task "defaultAsArray":
-
+test('task "defaultAsArray"', (t) => {
   take(tasks.defaultAsArray, (task) => {
     t.true(task instanceof taskClasses.TaskFork)
     t.is(task.name, 'defaultAsArray')
@@ -59,11 +66,9 @@ test('loading JSON file', (t) => {
       t.is(subTask.referencingTaskName, 'defaultAsArray')
     })
   })
+})
 
-
-  ////////////////////
-  // Task "willWork":
-
+test('task "willWork"', (t) => {
   take(tasks.willWork, (task) => {
     t.true(task instanceof taskClasses.TaskFork)
     t.is(task.name, 'willWork')
@@ -75,10 +80,9 @@ test('loading JSON file', (t) => {
       t.is(subTask.title, 'npm')
     })
   })
+})
 
-  ////////////////////
-  // Task "willFail":
-
+test('task "willFail"', (t) => {
   take(tasks.willFail, (task) => {
     t.true(task instanceof taskClasses.TaskFork)
     t.is(task.name, 'willFail')
@@ -96,5 +100,22 @@ test('loading JSON file', (t) => {
   })
 })
 
+test('running shell commands', (t) => {
+  ///////////////////
+  // Task "willWork"
 
-// TODO: Check if the right commands are passed to shell()
+  t.false(shell.called)
+  runTask(tasks.willWork)
+  t.is(shell.callCount, 1)
+  t.true(shell.calledWith('npm --version'))
+  shell.reset()
+
+  ///////////////////
+  // Task "willFail"
+
+  runTask(tasks.willFail)
+  t.is(shell.callCount, 2)
+  t.true(shell.calledWith('echo \'No\' >&2'))
+  t.true(shell.calledWith('exit 1'))
+  shell.reset()
+})
