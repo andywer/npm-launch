@@ -1,6 +1,5 @@
 const test          = require('ava').test
 const path          = require('path')
-const rewire        = require('rewire')
 const sinon         = require('sinon')
 const EventEmitter  = require('events')
 
@@ -24,9 +23,11 @@ test('loading JS file', (t) => {
 
   ///////////////////
   // Task "default":
-  t.true(tasks.default instanceof taskClasses.TaskFork)
-  t.is(tasks.default.name, 'default')
-  t.is(tasks.default.children.length, 3)
+  take(tasks.default, (task) => {
+    t.true(task instanceof taskClasses.TaskFork)
+    t.is(task.name, 'default')
+    t.is(task.children.length, 3)
+  })
 
   take(tasks.default.children[0], (subTask) => {
     t.true(subTask instanceof taskClasses.AnonymousCommandTask)
@@ -99,29 +100,41 @@ test('task instances are created correctly', (t) => {
 
   ////////////////////
   // fakeTask.method:
-  t.true(createdTasks.method instanceof taskClasses.TaskLeaf)
-  t.is(createdTasks.method.name, 'method')
-  t.is(createdTasks.method.title, 'method')
-  t.false(method.called)
-  t.is(createdTasks.method.method(), 'method called')
-  t.true(method.called)
+  take(createdTasks.method, (task) => {
+    t.true(task instanceof taskClasses.TaskLeaf)
+    t.is(task.name, 'method')
+    t.is(task.title, 'method')
+    t.false(method.called)
+    t.is(task.method(), 'method called')
+    t.true(method.called)
+  })
 
   ////////////////////////////
   // fakeTask.arrayOfMethods:
-  t.true(createdTasks.arrayOfMethods instanceof taskClasses.TaskFork)
-  t.is(createdTasks.arrayOfMethods.name, 'arrayOfMethods')
-  t.is(createdTasks.arrayOfMethods.title, 'arrayOfMethods')
-  t.is(createdTasks.arrayOfMethods.children.length, 1)
-  t.true(createdTasks.arrayOfMethods.children[0] instanceof taskClasses.AnonymousCommandTask)
-  t.is(createdTasks.arrayOfMethods.children[0].title, 'proxy')  // the sinon spy's name is "proxy"
+  take(createdTasks.arrayOfMethods, (task) => {
+    t.true(task instanceof taskClasses.TaskFork)
+    t.is(task.name, 'arrayOfMethods')
+    t.is(task.title, 'arrayOfMethods')
+    t.is(task.children.length, 1)
+  })
+
+  take(createdTasks.arrayOfMethods.children[0], (task) => {
+    t.true(task instanceof taskClasses.AnonymousCommandTask)
+    t.is(task.title, 'proxy')  // the sinon spy's name is "proxy"
+  })
 
   ////////////////////////////
   // fakeTask.arrayOfStrings:
-  t.true(createdTasks.arrayOfStrings instanceof taskClasses.TaskFork)
-  t.is(createdTasks.arrayOfStrings.name, 'arrayOfStrings')
-  t.is(createdTasks.arrayOfStrings.title, 'arrayOfStrings')
-  t.is(createdTasks.arrayOfStrings.children.length, 1)
-  t.true(createdTasks.arrayOfStrings.children[0] instanceof taskClasses.TaskReference)
-  t.is(createdTasks.arrayOfStrings.children[0].reference, 'method')
-  t.is(createdTasks.arrayOfStrings.children[0].referencingTaskName, 'arrayOfStrings')
+  take(createdTasks.arrayOfStrings, (task) => {
+    t.true(task instanceof taskClasses.TaskFork)
+    t.is(task.name, 'arrayOfStrings')
+    t.is(task.title, 'arrayOfStrings')
+    t.is(task.children.length, 1)
+  })
+
+  take(createdTasks.arrayOfStrings.children[0], (task) => {
+    t.true(task instanceof taskClasses.TaskReference)
+    t.is(task.reference, 'method')
+    t.is(task.referencingTaskName, 'arrayOfStrings')
+  })
 })
