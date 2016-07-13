@@ -1,9 +1,10 @@
 const test          = require('ava').test
 const path          = require('path')
+const rewire        = require('rewire')
 const sinon         = require('sinon')
 const EventEmitter  = require('events')
 
-const jsLoader      = require('../../lib/loaders/js')
+const jsLoader      = rewire('../../lib/loaders/js')
 const taskClasses   = require('../../lib/task/classes')
 
 const FIXTURE_FILE_PATH = path.join(__dirname, '../fixtures/launch.scripts.js')
@@ -77,7 +78,7 @@ test('observeExports() works, calls cause taskCallEmitter events', (t) => {
   const calls = []
   taskCallEmitter.on('call', (methodName) => calls.push(methodName))
 
-  jsLoader.observeExports(fakeTasks, taskCallEmitter)
+  jsLoader.__get__('observeExports')(fakeTasks, taskCallEmitter)
   t.is(calls.length, 0)
 
   const returnValue = fakeTasks.fakeTask('foo', 'bar')
@@ -96,7 +97,7 @@ test('task instances are created correctly', (t) => {
     arrayOfStrings: [ 'method' ]
   }
 
-  const createdTasks = jsLoader.createTasksForExports(fakeTasks)
+  const createdTasks = jsLoader.__get__('createTasksForExports')(fakeTasks)
 
   ////////////////////
   // fakeTask.method:
