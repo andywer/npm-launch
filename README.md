@@ -27,7 +27,7 @@ npm i --save-dev npm-launch
 
 - Because `scripts` in package.json are a mess
 - `gulp` & `grunt` need 100 lines of code for things that take one or two lines on the command line
-- Your terminal has constantly been flooded everytime you ran a task that produced a lot of stdout
+- Your terminal is constantly flooded everytime you run a task that prints a lot of output
 
 But no more! Let's take the sample launch file from the screencast before and use
 it in our `package.json`:
