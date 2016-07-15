@@ -1,5 +1,9 @@
 # npm-launch - Changelog
 
+## Next version
+
+- Bug fix: Babel transformation on code-based launch files fixed
+
 ## v0.1.2
 
 - Add unit and functional tests
