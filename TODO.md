@@ -1,6 +1,8 @@
 # TODO
 
-- CLI option to not use Listr and write all console output to terminal (--debug or similar)
+- CLI option to not use Listr and write all console output to terminal
+  (--plain-output || !require('tty').isatty(process.stdout))
+  (see https://github.com/SamVerschueren/listr/issues/11)
 - Come up with some way to let tasks print a tail of n lines to terminal when all is done
   (Maybe just parse `| tail -n <lines>` at the end of commands)
 - Implement a way to run stuff in parallel in JSON
