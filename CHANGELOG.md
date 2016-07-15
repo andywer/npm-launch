@@ -1,8 +1,8 @@
 # npm-launch - Changelog
 
-## Next version
+## v0.1.3
 
-- Bug fix: Babel transformation on code-based launch files fixed
+- Bug fix: Babel transformation fix (concerns JS launch files only, not JSON)
 
 ## v0.1.2
 
