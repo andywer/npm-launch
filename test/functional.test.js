@@ -20,6 +20,14 @@ test('running npm-launch default', () => {
   return execa.shell(`${NPM_LAUNCH} default`)
 })
 
+test('running npm-launch fancyTasking', () => {
+  return execa.shell(`${NPM_LAUNCH} fancyTasking`)
+})
+
+test('running npm-launch fancy-tasking', () => {
+  return execa.shell(`${NPM_LAUNCH} fancy-tasking`)
+})
+
 test('running npm-launch willFail', (t) => {
   return t.throws(execa.shell(`${NPM_LAUNCH} willFail`))
 })
