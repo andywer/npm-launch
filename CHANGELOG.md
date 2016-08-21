@@ -1,5 +1,9 @@
 # npm-launch - Changelog
 
+## Not yet released
+
+- CLI option: `--list`
+
 ## v0.1.3
 
 - Bug fix: Babel transformation fix (concerns JS launch files only, not JSON)

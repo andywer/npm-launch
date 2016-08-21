@@ -12,6 +12,13 @@ test('running npm-launch --help', () => {
   return execa.shell(`${NPM_LAUNCH} --help`)
 })
 
+test('running npm-launch --list', async (t) => {
+  const { stdout } = await execa.shell(`${NPM_LAUNCH} --list`)
+  const expectedTasks = [ 'default', 'fancyTasking', 'npmList', 'runStandardLinter', 'wasteSomeTime', 'willFail' ]
+  const expectedOutput = `Tasks in launch.scripts.js:\n${expectedTasks.map((taskName) => `  ${taskName}`).join('\n')}`
+  t.is(stdout, expectedOutput)
+})
+
 test('running npm-launch', () => {
   return execa.shell(`${NPM_LAUNCH}`)
 })
