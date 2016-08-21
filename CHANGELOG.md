@@ -1,6 +1,6 @@
 # npm-launch - Changelog
 
-## Not yet released
+## v0.1.4
 
 - CLI option: `--list`
 
