@@ -110,6 +110,29 @@ Features:
 - The additional power you need to solve complex tasks
 
 
+## CLI
+
+Run the tasks `build` and `test`:
+```sh
+launch build test
+```
+
+Run the `default` task:
+```sh
+launch
+```
+
+List all available tasks:
+```sh
+launch --list
+```
+
+Print CLI usage help text:
+```sh
+launch --help
+```
+
+
 ## Tips
 
 - If you do not provide a filename for a launch file it will look for a file named `launch.scripts.js`/`launch.scripts.json`/`launch.scripts.json5`
