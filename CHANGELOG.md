@@ -1,5 +1,9 @@
 # npm-launch - Changelog
 
+## Next release
+
+- Support for running tasks concurrently using `run-p`/`run-parallel`
+
 ## v0.1.4
 
 - CLI option: `--list`

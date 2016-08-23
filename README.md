@@ -48,7 +48,7 @@ Here we go, everything is clean and concise now!
 // File: launch.scripts.json5
 {
   build: "webpack -c webpack-config.production.js",
-  test:  "run lint && run mocha",
+  test:  "run-parallel lint mocha",
 
   //////////
   // Hooks:
@@ -71,6 +71,7 @@ $ launch -f path/to/launch-file build test
 
 Features:
 - Comments in JSON
+- Run tasks concurrently by using `run-parallel <task1> <task2> ...` (or short `run-p`)
 - Nicer syntax, easy to read and write
 - Very short and concise
 - Fully compatible with standard JSON

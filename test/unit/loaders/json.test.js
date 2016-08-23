@@ -24,7 +24,7 @@ function runTask (task) {
 test('all tasks have been loaded', (t) => {
   t.deepEqual(
     Object.keys(tasks).sort(),
-    [ 'default', 'defaultAsArray', 'willFail', 'willWork' ]
+    [ 'default', 'defaultAsArray', 'parallel', 'sleep1', 'sleep2', 'willFail', 'willWork' ]
   )
 })
 
@@ -96,7 +96,34 @@ test('task "willFail"', (t) => {
   })
 })
 
-test('running shell commands', (t) => {
+test('task "parallel"', (t) => {
+  take(tasks.parallel, (task) => {
+    t.true(task instanceof taskClasses.TaskFork)
+    t.is(task.name, 'parallel')
+    t.is(task.title, 'parallel')
+    t.is(task.children.length, 1)
+  })
+
+  take(tasks.parallel.children[0], (task) => {
+    t.true(task instanceof taskClasses.AnonymousConcurrentTaskFork)
+    t.is(task.title, 'run-parallel sleep1 sleep2')
+    t.is(task.children.length, 2)
+
+    take(task.children[0], (taskReference) => {
+      t.true(taskReference instanceof taskClasses.TaskReference)
+      t.is(taskReference.reference, 'sleep1')
+      t.is(taskReference.referencingTaskName, 'parallel')
+    })
+
+    take(task.children[1], (taskReference) => {
+      t.true(taskReference instanceof taskClasses.TaskReference)
+      t.is(taskReference.reference, 'sleep2')
+      t.is(taskReference.referencingTaskName, 'parallel')
+    })
+  })
+})
+
+test('it actually run shell commands', (t) => {
   ///////////////////
   // Task "willWork"
 

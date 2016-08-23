@@ -12,5 +12,10 @@
   default: "run willWork && run willFail",
 
   // You can also use array syntax!
-  defaultAsArray: [ "willWork", "willFail" ]
+  defaultAsArray: [ "willWork", "willFail" ],
+
+  parallel: "run-parallel sleep1 sleep2",
+
+  sleep1: "sleep 1",
+  sleep2: "sleep 1 && sleep 1"
 }
