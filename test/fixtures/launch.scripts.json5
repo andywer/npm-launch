@@ -16,6 +16,6 @@
 
   parallel: "run-parallel sleep1 sleep2",
 
-  sleep1: "sleep 1",
-  sleep2: "sleep 1 && sleep 1"
+  sleep1: "sleep 2.5",
+  sleep2: "sleep 2 && sleep 2"
 }
