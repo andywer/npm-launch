@@ -9,7 +9,7 @@
   "scripts": {
     "prepublish": "npm run test",
     "prepush": "npm run test",
-    "test": "standard lib/*.js && nyc ava"
+    "test": "standard lib/*.js && nyc ava lib/**/test/*.test.js test/*.test.js"
   },
   "keywords": [
     "launch",
