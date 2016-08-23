@@ -25,6 +25,9 @@
   ],
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">= 4.0"
+  },
   "devDependencies": {
     "ava": "^0.15.2",
     "husky": "^0.11.4",
