@@ -7,9 +7,9 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "prepublish": "npm run test",
-    "prepush": "npm run test",
-    "test": "launch test"
+    "prepublish": "npm test",
+    "prepush": "npm test",
+    "test": "lib/cli.js test"
   },
   "keywords": [
     "launch",
