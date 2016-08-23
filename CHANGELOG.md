@@ -1,6 +1,6 @@
 # npm-launch - Changelog
 
-## Next release
+## v0.2.0
 
 - Support for running tasks concurrently using `run-p`/`run-parallel`
 
