@@ -27,8 +27,10 @@ npm i --save-dev npm-launch
 ## Why?
 
 - Because `scripts` in package.json are a mess
-- `gulp` & `grunt` need 100 lines of code for things that take one or two lines on the command line
-- Your terminal is constantly flooded everytime you run a task that prints a lot of output
+- When they fail, `npm` prints ~25 lines of non-helpful disclaimers
+- If a script called by another script fails, you already got 50 lines to scroll
+- `gulp` & `grunt` instead need 100 lines of code for things that take less than five lines on the command line
+- Your terminal is constantly flooded with output everytime you run a task
 
 But no more! Let's take the sample launch file from the screencast before and use
 it in our `package.json`:
@@ -39,7 +41,7 @@ it in our `package.json`:
 
 Here we go, everything is clean and concise now!
 
-**A clean and short package.json. Commented tasks. Not buried under tons of debug output anymore.**
+**A clean and short package.json. Commented tasks. Concurrency support out-of-the-box.**
 
 
 ## Usage (JSON)
@@ -141,6 +143,8 @@ launch --help
 
 
 ## Minor known limitations
+
+These limitations only apply if your launch file contains custom JS code rather than JSON tasks.
 
 #### No checkmark list for tasks being called by code
 
