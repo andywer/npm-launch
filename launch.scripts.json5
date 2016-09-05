@@ -2,5 +2,5 @@
   test: "run-p ava lint",
 
   ava: "nyc ava {lib,test}/**/*.test.js",
-  lint: "standard lib/**/*.js"
+  lint: "standard lib/*.js lib/**/*.js"
 }
