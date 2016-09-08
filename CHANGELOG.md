@@ -1,5 +1,12 @@
 # npm-launch - Changelog
 
+## v0.3.0
+
+- Show last (non-empty) line of command output: npm-launch/issues#5
+- Minor fix: Prevent unhelpful stack trace: npm-launch/issues#6
+- Minor fix: Set process title to `npm-launch` (defaulted to `node` until now)
+- Minor fix: Add `engines` prop to `package.json`
+
 ## v0.2.0
 
 - Support for running tasks concurrently using `run-p`/`run-parallel`
