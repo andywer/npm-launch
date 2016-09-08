@@ -21,7 +21,7 @@ Minimalistic task runner on steroids. Write scripts using JSON5 or ES6 JavaScrip
 ## Installation
 
 ```sh
-npm i --save-dev npm-launch
+npm install --save-dev npm-launch
 ```
 
 ## Why?
@@ -161,7 +161,7 @@ list will probably be corrupted.
 
 ## Changelog
 
-See [CHANGELOG.md](./CHANGELOG.md) for details.
+See [CHANGELOG.md](./CHANGELOG.md) or [Releases Page](https://github.com/andywer/npm-launch/releases) for more details.
 
 
 ## License
