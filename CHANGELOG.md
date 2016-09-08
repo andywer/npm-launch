@@ -1,5 +1,7 @@
 # npm-launch - Changelog
 
+This is the brief changelog. For more details see https://github.com/andywer/npm-launch/releases.
+
 ## v0.3.0
 
 - Show last (non-empty) line of command output: npm-launch/issues#5
