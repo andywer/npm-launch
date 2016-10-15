@@ -2,6 +2,11 @@
 
 This is the brief changelog. For more details see https://github.com/andywer/npm-launch/releases.
 
+## Next release
+
+- Breaking change: Running `launch` without parameters now shows the available tasks
+- Much shorter init time for JSON-based configs (1.4s faster (!))
+
 ## v0.3.0
 
 - Show last (non-empty) line of command output: npm-launch/issues#5

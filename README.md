@@ -120,14 +120,9 @@ Run the tasks `build` and `test`:
 launch build test
 ```
 
-Run the `default` task:
-```sh
-launch
-```
-
 List all available tasks:
 ```sh
-launch --list
+launch
 ```
 
 Print CLI usage help text:
