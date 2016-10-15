@@ -7,7 +7,7 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "coverage": "nyc ./lib/cli.js ava",
+    "coverage": "./lib/cli.js coverage",
     "prepublish": "npm test",
     "prepush": "npm test",
     "test": "./lib/cli.js test"

@@ -2,5 +2,6 @@
   test: "run-p ava lint",
 
   ava: "ava {lib,test}/**/*.test.js",
+  coverage: "nyc ./lib/cli.js ava",
   lint: "standard lib/*.js lib/**/*.js"
 }

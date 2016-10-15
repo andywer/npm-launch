@@ -4,7 +4,8 @@ const path  = require('path')
 
 process.chdir('./fixtures')
 
-const NPM_LAUNCH = '../../lib/cli.js'
+const NPM_LAUNCH = path.join('..', '..', 'lib/cli.js')
+const OWN_LAUNCH_FILE = path.join(__dirname, '..', 'launch.scripts.json5')
 
 test('running npm-launch --help', () => {
   // will reject the returned Promise if something goes wrong
@@ -12,11 +13,19 @@ test('running npm-launch --help', () => {
   return execa.shell(`${NPM_LAUNCH} --help`)
 })
 
-test('running npm-launch --list', async (t) => {
-  const { stdout } = await execa.shell(`${NPM_LAUNCH} --list`)
-  const expectedTasks = [ 'default', 'fancyTasking', 'npmList', 'runStandardLinter', 'wasteSomeTime', 'willFail' ]
-  const expectedOutput = `Tasks in launch.scripts.js:\n${expectedTasks.map((taskName) => `  ${taskName}`).join('\n')}`
-  t.is(stdout, expectedOutput)
+test('running npm-launch without params shows available tasks', async (t) => {
+  const { stdout } = await execa.shell(`${NPM_LAUNCH} -f ${OWN_LAUNCH_FILE}`)
+  const expectedOutput = `
+Lifecycle tasks:
+  test      Run the tests
+
+Development tasks:
+  lint      Lint the code
+  coverage  Generate test coverage
+
+Other tasks:
+  ava`
+  t.is(stdout.trim(), expectedOutput.trim())
 })
 
 test('running npm-launch', () => {
