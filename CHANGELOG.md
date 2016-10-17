@@ -6,6 +6,7 @@ This is the brief changelog. For more details see https://github.com/andywer/npm
 
 - Breaking change: Running `launch` without parameters now shows the available tasks
 - Much shorter init time for JSON-based configs (1.4s faster (!))
+- Better command line task titles (`git push` instead of `git`, ...)
 
 ## v0.3.0
 
